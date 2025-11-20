@@ -24,18 +24,18 @@
 - [x] Vendor Mode: Vendoring dependencies for offline builds.
 
 ## 3. Polyglot Builds: Language Specifics
-- [ ] C++ Development:
-	- [ ] Rules: cc_library, cc_binary, cc_test, cc_import.
-	- [ ] Managing headers/includes (hdrs, includes, strip_include_prefix).
-	- [ ] Linking external system libraries.
-- [ ] Go Development:
-	- [ ] Setup: rules_go.
-	- [ ] The Ecosystem: Why you need Gazelle for dependency resolution.
-	- [ ] Generating BUILD files automatically with Gazelle.
-- [ ] Python Development:
-	- [ ] Setup: rules_python.
-	- [ ] Managing Pip dependencies (pip.parse extension).
-	- [ ] Creating hermetic Python toolchains.
+- [x] C++ Development:
+	- [x] Rules: cc_library, cc_binary, cc_test, cc_import.
+	- [x] Managing headers/includes (hdrs, includes, strip_include_prefix).
+	- [x] Linking external system libraries.
+- [x] Go Development:
+	- [x] Setup: rules_go.
+	- [x] The Ecosystem: Why you need Gazelle for dependency resolution.
+	- [x] Generating BUILD files automatically with Gazelle.
+- [x] Python Development:
+	- [x] Setup: rules_python.
+	- [x] Managing Pip dependencies (pip.parse extension).
+	- [x] Creating hermetic Python toolchains.
 
 ## 4. The "Glue": Protobuf & gRPC
 - [ ] Concept: Single source of truth for APIs.
