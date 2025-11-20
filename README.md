@@ -1,17 +1,19 @@
 # The Bazel 8.x Learning Path: Polyglot Engineering (C++, Go, Python)
-
-## 1. Foundations & Philosophy
-- [ ] The Bazel Philosophy: Hermeticity, Reproducibility, and Scalability.
-- [ ] Architecture: The Client-Server model (Bazel server, JVM).
-- [ ] Core Terminology: Workspace vs. Module, Packages, Targets, Rules, Labels, and Actions.
-- [ ] The Graphs: Understanding the Action Graph vs. The Dependency Graph.
-- [ ] Project Structure (Bzlmod focus):
-	- [ ] MODULE.bazel: The new standard for dependency management.
-	- [ ] BUILD.bazel: Defining package boundaries.
-	- [ ] .bazelrc: Managing flags and configurations.
-- [ ] Hello World (Polyglot):
-	- [ ] Setting up the environment (Bazelisk).
-	- [ ] Running your first bazel build //... and bazel run.
+## 1. [Foundations & Philosophy (Bazelisk & Versioning)](01/01.md)
+- [x] The Bazel Philosophy: Hermeticity, Reproducibility, and Scalability.
+- [x] Architecture: The Client-Server model (Bazel server, JVM).
+- [x] Environment Setup (The Right Way):
+	- [x] Installing Bazelisk (the recommended launcher/wrapper).
+	- [x] Understanding why you shouldn't install bazel directly.
+- [x] Version Management:
+	- [x] Creating the .bazelversion file.
+	- [x] Pinning a specific version (e.g., 8.0.0).
+	- [x] How Bazelisk reads .bazelversion to auto-download the correct binary.
+- [x] Core Terminology: Workspace vs. Module, Packages, Targets, Rules, Labels, and Actions.
+- [x] Project Structure (Bzlmod focus):
+	- [x] MODULE.bazel: The new standard for dependency management.
+	- [x] BUILD.bazel: Defining package boundaries.
+	- [x] .bazelrc: Managing flags and configurations.
 
 ## 2. Dependency Management (Bzlmod)
 - [ ] Introduction to Bzlmod: The Bazel Central Registry (BCR).
