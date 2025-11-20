@@ -15,7 +15,7 @@
 	- [x] BUILD.bazel: Defining package boundaries.
 	- [x] .bazelrc: Managing flags and configurations.
 
-## 2. Dependency Management (Bzlmod)
+## 2. [Dependency Management (Bzlmod)](02/02.md)
 - [x] Introduction to Bzlmod: The Bazel Central Registry (BCR).
 - [x] Declaring External Dependencies:
 	- [x] Using bazel_dep.
@@ -23,7 +23,7 @@
 - [x] Lockfiles: Understanding MODULE.bazel.lock.
 - [x] Vendor Mode: Vendoring dependencies for offline builds.
 
-## 3. Polyglot Builds: Language Specifics
+## 3. [Polyglot Builds: Language Specifics](03/03.md)
 - [x] C++ Development:
 	- [x] Rules: cc_library, cc_binary, cc_test, cc_import.
 	- [x] Managing headers/includes (hdrs, includes, strip_include_prefix).
