@@ -1,0 +1,14 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_tutorial_lib",
+    srcs = ["main.go"],
+    importpath = "bazel-reference/03/src/go_tutorial",
+    visibility = ["//visibility:private"],
+)
+
+go_binary(
+    name = "go_tutorial",
+    embed = [":go_tutorial_lib"],
+    visibility = ["//visibility:public"],
+)

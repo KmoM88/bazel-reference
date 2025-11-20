@@ -1,0 +1,13 @@
+# src/cpp_tutorial/BUILD.bazel
+
+cc_library(
+    name = "hello_lib",
+    srcs = ["hello.cc"],
+    hdrs = ["hello.h"],
+)
+
+cc_binary(
+    name = "hello_world",
+    srcs = ["main.cc"],
+    deps = [":hello_lib"],  # Links the library above
+)

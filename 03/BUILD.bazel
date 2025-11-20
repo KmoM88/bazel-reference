@@ -1,0 +1,5 @@
+# BUILD.bazel (Root)
+load("@gazelle//:def.bzl", "gazelle")
+
+# This target runs the tool to generate other BUILD files
+gazelle(name = "gazelle")
