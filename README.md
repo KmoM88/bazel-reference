@@ -16,12 +16,12 @@
 	- [x] .bazelrc: Managing flags and configurations.
 
 ## 2. Dependency Management (Bzlmod)
-- [ ] Introduction to Bzlmod: The Bazel Central Registry (BCR).
-- [ ] Declaring External Dependencies:
-	- [ ] Using bazel_dep.
-	- [ ] Versioning and overrides (git_override, local_path_override).
-- [ ] Lockfiles: Understanding MODULE.bazel.lock.
-- [ ] Vendor Mode: Vendoring dependencies for offline builds.
+- [x] Introduction to Bzlmod: The Bazel Central Registry (BCR).
+- [x] Declaring External Dependencies:
+	- [x] Using bazel_dep.
+	- [x] Versioning and overrides (git_override, local_path_override).
+- [x] Lockfiles: Understanding MODULE.bazel.lock.
+- [x] Vendor Mode: Vendoring dependencies for offline builds.
 
 ## 3. Polyglot Builds: Language Specifics
 - [ ] C++ Development:
