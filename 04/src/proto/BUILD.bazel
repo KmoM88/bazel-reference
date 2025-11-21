@@ -1,0 +1,30 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_cc//cc:defs.bzl", "cc_proto_library")
+load("@rules_go//proto:def.bzl", "go_proto_library")
+load("@grpc//bazel:cc_grpc_library.bzl", "cc_grpc_library")
+
+proto_library(
+    name = "greeter_proto",
+    srcs = ["greeter.proto"],
+    visibility = ["//visibility:public"],
+)
+
+cc_proto_library(
+    name = "greeter_cc_proto",
+    deps = [":greeter_proto"],
+)
+
+cc_grpc_library(
+    name = "greeter_cc_grpc",
+    srcs = [":greeter_proto"],
+    deps = [":greeter_cc_proto"], 
+    visibility = ["//visibility:public"],
+)
+
+go_proto_library(
+    name = "greeter_go_proto",
+    compilers = ["@rules_go//proto:go_grpc"],
+    importpath = "bazel-reference/04/src/proto",
+    proto = ":greeter_proto",
+    visibility = ["//visibility:public"],
+)

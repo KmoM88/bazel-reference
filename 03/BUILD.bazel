@@ -1,3 +1,4 @@
+# gazelle:prefix bazel-reference/03
 # BUILD.bazel (Root)
 load("@gazelle//:def.bzl", "gazelle")
 

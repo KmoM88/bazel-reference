@@ -1,0 +1,11 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_binary(
+    name = "client",
+    srcs = ["main.go"],
+    deps = [
+        "//src/proto:greeter_go_proto", # Generated Go code
+        "@org_golang_google_grpc//:go_default_library",
+        "@org_golang_google_grpc//credentials/insecure:go_default_library",
+    ],
+)

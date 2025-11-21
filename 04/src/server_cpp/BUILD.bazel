@@ -1,0 +1,8 @@
+cc_binary(
+    name = "server",
+    srcs = ["server.cc"],
+    deps = [
+        "//src/proto:greeter_cc_grpc",
+        "@grpc//:grpc++",
+    ],
+)
