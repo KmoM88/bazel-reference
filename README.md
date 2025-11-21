@@ -1,5 +1,5 @@
 # The Bazel Learning Path: Polyglot Engineering (C++, Go, Python)
-## 1. Foundations & Environment
+## 1. [Foundations & Environment](01/01.md)
 Goal: Understand the architecture and set up the hybrid environment correctly.
 
 - [x] Setup:
