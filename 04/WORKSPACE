@@ -1,0 +1,33 @@
+# WORKSPACE
+
+# We use WORKSPACE solely for gRPC and Protobuf, which are still
+# highly dependent on the old repository names for C++ compilation.
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# 1. gRPC Dependencies (This defines the crucial @com_github_grpc_grpc repository)
+http_archive(
+    name = "com_github_grpc_grpc",
+    urls = [
+        "https://github.com/grpc/grpc/archive/refs/tags/v1.66.0.tar.gz",
+    ],
+    sha256 = "eacf07e6354b6a30056b0338027b20c7f5a1da556a674d108cea1b8938d7abec",
+    strip_prefix = "grpc-1.66.0",
+)
+
+# 2.Protobuf with ProtoInfo.
+http_archive(
+    name = "com_google_protobuf",
+    urls = [
+        "https://github.com/protocolbuffers/protobuf/archive/v27.0.tar.gz",
+    ],
+    sha256 = "da288bf1daa6c04d03a9051781caa52aceb9163586bff9aa6cfb12f69b9395aa", 
+    strip_prefix = "protobuf-27.0",
+)
+
+# 3. Load gRPC Macros (These load Protobuf and other dependencies needed by gRPC)
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+grpc_deps()
+
+load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+grpc_extra_deps()

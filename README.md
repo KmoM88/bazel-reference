@@ -1,4 +1,4 @@
-# The Bazel 8.x Learning Path: Polyglot Engineering (C++, Go, Python)
+# The Bazel Learning Path: Polyglot Engineering (C++, Go, Python)
 ## 1. [Foundations & Philosophy (Bazelisk & Versioning)](01/01.md)
 - [x] The Bazel Philosophy: Hermeticity, Reproducibility, and Scalability.
 - [x] Architecture: The Client-Server model (Bazel server, JVM).

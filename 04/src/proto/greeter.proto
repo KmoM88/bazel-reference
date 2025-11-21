@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package greeter;
 
-option go_package = "github.com/myuser/myproject/src/proto";
+option go_package = "bazel-reference/04/src/proto";
 
 // The Service definition
 service Greeter {
