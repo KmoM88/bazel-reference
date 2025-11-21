@@ -2,17 +2,17 @@
 ## 1. Foundations & Environment
 Goal: Understand the architecture and set up the hybrid environment correctly.
 
-- [ ] Setup:
-	- [ ] Installing Bazelisk.
-	- [ ] Creating `.bazelversion` (pinned to 7.7.1).
-	- [ ] Verification (`bazel version`).
-- [ ] The Hybrid Configuration:
-	- [ ] Creating the `MODULE.bazel` (The future).
-	- [ ] Creating the `WORKSPACE` (The bridge for gRPC C++).
-	- [ ] Creating `.bazelrc` (common flags).
-- [ ] Core Concepts:
-	- [ ] The "Action Graph": Input -> Action -> Output.
-	- [ ] Labels, Targets, and Packages.
+- [x] Setup:
+	- [x] Installing Bazelisk.
+	- [x] Creating `.bazelversion` (pinned to 7.7.1).
+	- [x] Verification (`bazel version`).
+- [x] The Hybrid Configuration:
+	- [x] Creating the `MODULE.bazel` (The future).
+	- [x] Creating the `WORKSPACE` (The bridge for gRPC C++).
+	- [x] Creating `.bazelrc` (common flags).
+- [x] Core Concepts:
+	- [x] The "Action Graph": Input -> Action -> Output.
+	- [x] Labels, Targets, and Packages.
 
 ## 2. Deep Dive: C++ (The Bedrock)
 Goal: Master native rules and conquer the gRPC integration first.
