@@ -1,106 +1,129 @@
 # The Bazel Learning Path: Polyglot Engineering (C++, Go, Python)
-## 1. [Foundations & Philosophy (Bazelisk & Versioning)](01/01.md)
-- [x] The Bazel Philosophy: Hermeticity, Reproducibility, and Scalability.
-- [x] Architecture: The Client-Server model (Bazel server, JVM).
-- [x] Environment Setup (The Right Way):
-	- [x] Installing Bazelisk (the recommended launcher/wrapper).
-	- [x] Understanding why you shouldn't install bazel directly.
-- [x] Version Management:
-	- [x] Creating the .bazelversion file.
-	- [x] Pinning a specific version (e.g., 8.0.0).
-	- [x] How Bazelisk reads .bazelversion to auto-download the correct binary.
-- [x] Core Terminology: Workspace vs. Module, Packages, Targets, Rules, Labels, and Actions.
-- [x] Project Structure (Bzlmod focus):
-	- [x] MODULE.bazel: The new standard for dependency management.
-	- [x] BUILD.bazel: Defining package boundaries.
-	- [x] .bazelrc: Managing flags and configurations.
+## 1. Foundations & Environment
+Goal: Understand the architecture and set up the hybrid environment correctly.
 
-## 2. [Dependency Management (Bzlmod)](02/02.md)
-- [x] Introduction to Bzlmod: The Bazel Central Registry (BCR).
-- [x] Declaring External Dependencies:
-	- [x] Using bazel_dep.
-	- [x] Versioning and overrides (git_override, local_path_override).
-- [x] Lockfiles: Understanding MODULE.bazel.lock.
-- [x] Vendor Mode: Vendoring dependencies for offline builds.
+- [ ] Setup:
+	- [ ] Installing Bazelisk.
+	- [ ] Creating `.bazelversion` (pinned to 7.7.1).
+	- [ ] Verification (`bazel version`).
+- [ ] The Hybrid Configuration:
+	- [ ] Creating the `MODULE.bazel` (The future).
+	- [ ] Creating the `WORKSPACE` (The bridge for gRPC C++).
+	- [ ] Creating `.bazelrc` (common flags).
+- [ ] Core Concepts:
+	- [ ] The "Action Graph": Input -> Action -> Output.
+	- [ ] Labels, Targets, and Packages.
 
-## 3. [Polyglot Builds: Language Specifics](03/03.md)
-- [x] C++ Development:
-	- [x] Rules: cc_library, cc_binary, cc_test, cc_import.
-	- [x] Managing headers/includes (hdrs, includes, strip_include_prefix).
-	- [x] Linking external system libraries.
-- [x] Go Development:
-	- [x] Setup: rules_go.
-	- [x] The Ecosystem: Why you need Gazelle for dependency resolution.
-	- [x] Generating BUILD files automatically with Gazelle.
-- [x] Python Development:
-	- [x] Setup: rules_python.
-	- [x] Managing Pip dependencies (pip.parse extension).
-	- [x] Creating hermetic Python toolchains.
+## 2. Deep Dive: C++ (The Bedrock)
+Goal: Master native rules and conquer the gRPC integration first.
 
-## 4. The "Glue": Protobuf & gRPC
-- [ ] Concept: Single source of truth for APIs.
-- [ ] Defining Schemas: The proto_library rule.
-- [ ] Code Generation Aspects:
-	- [ ] Generating C++ bindings (cc_proto_library, cc_grpc_library).
-	- [ ] Generating Go bindings (go_proto_library with compilers).
-	- [ ] Generating Python bindings.
-- [ ] Cross-Language Integration:
-	- [ ] Building a C++ gRPC server.
-	- [ ] Building a Python/Go gRPC client.
-	- [ ] Linking them together in the dependency graph.
+- [ ] 2.1 Basic C++:
+	- [ ] `cc_binary` & `cc_library`: Headers vs Sources.
+	- [ ] Visibility: Controlling access between packages.
+	- [ ] Includes: `strip_include_prefix` vs `includes`.
+- [ ] 2.2 External Dependencies (Bzlmod):
+	- [ ] The Bazel Central Registry (BCR).
+	- [ ] Adding `googletest` or `abseil` via `MODULE.bazel`.
+	- [ ] Unit Testing: Writing and running `cc_test`.
+- [ ] 2.3 C++ with gRPC (The Hybrid Bridge):
+	- [ ] Critical: Configuring `WORKSPACE` for gRPC/Protobuf (avoiding the Bzlmod conflict).
+	- [ ] Defining Schemas (`proto_library`).
+	- [ ] Code Gen: `cc_proto_library` & `cc_grpc_library`.
+	- [ ] The Build: Compiling a C++ Server/Client.
 
-## 5. Daily Usage & Workflow Efficiency
-- [ ] Target Patterns: Mastering wildcards (//foo/..., :all).
-- [ ] Debugging Builds:
-	- [ ] Understanding errors: "Sandboxing disabled", "Missing input file".
-	- [ ] Using --verbose_failures and --subcommands.
-- [ ] Code Health & Formatting:
-	- [ ] Using Buildifier to lint and format BUILD files.
-	- [ ] Conventional naming for targets.
+## 3. Deep Dive: Python (The Glue)
+Goal: Hermetic scripting and proto integration.
+
+- [ ] 3.1 Basic Python:
+	- [ ] `py_binary`, `py_library`, `py_test`.
+- [ ] 3.2 External Dependencies (Pip):
+	- [ ] Configuring `rules_python` in `MODULE.bazel`.
+	- [ ] Hermeticity: Locking the Python interpreter version.
+	- [ ] `pip.parse`: Handling `requirements.txt`.
+- [ ] 3.3 Python with gRPC:
+	- [ ] `py_proto_library`: Generating stubs.
+	- [ ] Verification: A Python client talking to the C++ server (from Ch 2).
+
+## 4. Deep Dive: Go (The Modern Backend)
+Goal: Automating builds with Gazelle.
+
+- [ ] 4.1 Basic Go & Gazelle:
+	- [ ] Setup `rules_go` & `go_sdk` in `MODULE.bazel`.
+	- [ ] Gazelle: Configuring the target and running the generator.
+- [ ] 4.2 External Dependencies:
+	- [ ] `go.mod` integration.
+	- [ ] Using `gazelle:repository_macro` to `sync` deps.
+- [ ] 4.3 Go with gRPC:
+	- [ ] Proto compiler registration.
+	- [ ] `go_proto_library` (Auto-generated by Gazelle).
+	- [ ] Verification: A Go server/client implementing the shared proto.
+
+## 5. The Polyglot Integration
+Goal: The "Monorepo Moment" - connecting everything.
+
+- [ ] Architecture: One Proto (`//src/proto`), Three Languages consuming it.
+- [ ] Graph Analysis: Visualizing the multi-language dependency graph.
+- [ ] Integration Testing: A single test command that spins up C++ and hits it with Python/Go.
+
+## 6. Developer Experience & Workflow
+Goal: Making daily usage fast and painless.
+
+- [ ] Target Patterns: Wildcards (`//...`, `:all`).
+- [ ] Debugging:
+	- [ ] Understanding "Sandboxing" errors.
+	- [ ] Flags: `--verbose_failures`, `--subcommands`, `--sandbox_debug`.
+- [ ] Code Health:
+	- [ ] `buildifier`: Formatting BUILD files.
+	- [ ] Naming conventions.
 - [ ] Test Engineering:
-	- [ ] bazel test: Caching test results and flaky tests.
-	- [ ] Test suites and size (small, medium, large).
-	- [ ] Coverage reports (bazel coverage).
+	- [ ] Test Caching & Flakiness.
+	- [ ] Test Suites & Sizes (small/medium/large).
+	- [ ] Coverage reports (`bazel coverage`).
 
-## 6. Visibility, Queries & Graph Analysis
-- [ ] Visibility Control: package_group and visibility attributes (enforcing architecture).
+## 7. Visibility, Queries & Graph Analysis
+Goal: Understanding and enforcing architecture.
+
+- [ ] Visibility Control: package_group and strict visibility rules.
 - [ ] Bazel Query Language:
-	- [ ] bazel query: Exploring the graph (deps(), rdeps(), somepath()).
-	- [ ] Practical use case: "Why does target X depend on target Y?"
+	- [ ] `deps()`, `rdeps()`, `somepath()`.
+	- [ ] Debugging: "Why am I pulling in this library?"
 - [ ] Advanced Queries:
-	- [ ] cquery (Configurable Query): Analyzing the graph after configuration (flags) are applied.
-	- [ ] aquery (Action Graph Query): Inspecting the exact command lines executed.
+	- [ ] `cquery` (Configured Query): Analyzing with flags applied.
+	- [ ] `aquery` (Action Query): Inspecting command lines.
 
-## 7. Configuration & Platforms
+## 8. Configuration & Platforms
+Goal: Building for different environments.
+
 - [ ] Configurability:
-	- [ ] select(): Conditional compilation based on flags.
-	- [ ] Defining custom build flags (build_setting).
+	- [ ] `select()`: Conditional logic in BUILD files (e.g., OS-specific flags).
+	- [ ] Custom flags (`build_setting`).
 - [ ] Platforms & Toolchains:
-	- [ ] Understanding platforms, constraint_values, and toolchains.
-	- [ ] Cross-Compilation: Building a Linux binary from macOS.
-	- [ ] Hermetic Toolchains: ensuring the C++ compiler is exactly the same on every machine.
+	- [ ] Concepts: Platforms vs Toolchains.
+	- [ ] Cross-Compilation: Building Linux binaries on macOS.
+	- [ ] Caching: Setting up a local disk cache.
 
-## 8. Extensibility (Starlark)
-- [ ] Macros:
-	- [ ] Reducing boilerplate in BUILD files.
-	- [ ] Symbolic macros (New in Bazel 8).
+## 9. Extensibility (Starlark)
+Goal: Extending Bazel when standard rules aren't enough.
+
+- [ ] Macros: Reducing boilerplate in BUILD files.
 - [ ] Custom Rules:
-	- [ ] The ctx object, actions, and providers.
-	- [ ] Writing a simple custom rule (e.g., a file generator).
-- [ ] Aspects:
-	- [ ] Traversing the graph to generate side-data (e.g., IDE support files, Docker images).
+	- [ ] The `ctx` object, Actions, and Providers.
+	- [ ] Writing a simple file-generating rule.
+- [ ] Aspects: Generating side-data (IDE support, linting) without changing the graph.
 
-## 9. Performance & Remote Execution
-- [ ] Local Optimization:
-	- [ ] The Sandbox strategy (tmpfs).
-	- [ ] Workers and persistent workers.
-- [ ] Remote Caching:
-	- [ ] Setting up a read/write remote cache (e.g., Nginx, GCS).
-	- [ ] Build Event Protocol (BEP) and Build Scanning.
-- [ ] Remote Build Execution (RBE):
-	- [ ] Concept of executing actions on a cluster.
+## 10. Advanced Integration & Deployment
+Goal: Taking artifacts to production.
 
-## 10. Advanced Integration
-- [ ] Docker/OCI Images: Using rules_oci to package Go/C++ binaries containerlessly.
-- [ ] CI/CD Integration: Github Actions / GitLab CI with Bazel caches.
-- [ ] Migration Strategies: Moving large C++/Python repos to Bazel incrementally.
+- [ ] Docker/OCI: Using `rules_oci` to package Go/C++ binaries (containerless).
+- [ ] CI/CD: GitHub Actions / GitLab CI integration with Bazel caches.
+- [ ] Migration Strategies: How to move existing codebases to Bazel.
+
+## 11. Final Project: The Microservices Mesh
+Goal: A complete, deployable system demonstrating all concepts.
+
+- [ ] Design:
+	- Service A (C++): High-performance gRPC Engine.
+	- Service B (Go): API Gateway (HTTP -> gRPC).
+	- Script C (Python): Admin/Data Analysis script.
+- [ ] Implementation: Building the full monorepo from scratch.
+- [ ] Packaging: Creating optimized release artifacts.

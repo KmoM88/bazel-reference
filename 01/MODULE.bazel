@@ -1,4 +1,4 @@
 module(
-    name = "my_bazel_project",
-    version = "0.1.0",
+    name = "polyglot_project",
+    version = "0.0.1",
 )
