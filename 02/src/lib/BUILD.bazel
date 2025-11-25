@@ -1,0 +1,9 @@
+cc_library(
+    name = "greeter_lib",
+    srcs = ["greeter.cc"],
+    hdrs = ["greeter.h"],
+    # 'strip_include_prefix' allows consumers to include "greeter.h" 
+    # directly instead of "src/lib/greeter.h"
+    strip_include_prefix = ".", 
+    visibility = ["//visibility:public"],
+)

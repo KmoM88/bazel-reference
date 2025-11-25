@@ -1,0 +1,5 @@
+toolchain(
+    name = "protoc_toolchain_register",
+    toolchain = "//external:protoc_toolchain",
+    toolchain_type = "@rules_proto//proto:toolchain_type",
+)

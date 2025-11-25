@@ -1,13 +1,4 @@
-# MODULE.bazel
-
-# 1. Main project definition
 module(
-    name = "my_bazel_project", 
-    version = "0.1.0",
+    name = "my_bazel_project",
+    version = "0.0.1",
 )
-
-# 2. Declare external rule sets needed for the next chapters
-bazel_dep(name = "rules_cc", version = "0.0.9")
-bazel_dep(name = "rules_go", version = "0.45.2")
-bazel_dep(name = "rules_python", version = "0.33.0")
-bazel_dep(name = "bazel_tools", version = "7.1.0")

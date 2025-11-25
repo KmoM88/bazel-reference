@@ -1,0 +1,8 @@
+cc_test(
+    name = "greeter_test",
+    srcs = ["greeter_test.cc"],
+    deps = [
+        "//src/lib:greeter_lib",
+        "@com_google_googletest//:gtest_main", # Legacy label from WORKSPACE
+    ],
+)

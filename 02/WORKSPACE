@@ -1,0 +1,59 @@
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# GoogleTest
+http_archive(
+    name = "com_google_googletest",
+    urls = ["https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz"],
+    sha256 = "8ad598c73ad796e0d8280b082cebd82a630d73e73cd3c70057938a6501bba5d7",
+    strip_prefix = "googletest-1.14.0",
+)
+
+# 1. Load gRPC v1.66.0
+http_archive(
+    name = "com_github_grpc_grpc",
+    urls = ["https://github.com/grpc/grpc/archive/refs/tags/v1.66.0.tar.gz"],
+    sha256 = "eacf07e6354b6a30056b0338027b20c7f5a1da556a674d108cea1b8938d7abec",
+    strip_prefix = "grpc-1.66.0",
+)
+
+# 2. Load gRPC Dependencies
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+grpc_deps()
+
+load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+grpc_extra_deps()
+
+# Protoc Compiler (Versión 3.20.3)
+http_archive(
+    name = "bazel_skylib",
+    sha256 = "c08d511da3d6110f08e3325c81d898687a6b57187c31d10c0e5b7b960b7937e1",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.5.0/bazel-skylib-1.5.0.tar.gz",
+        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.5.0/bazel-skylib-1.5.0.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "rules_proto",
+    sha256 = "303e86e722a520f6f326a50b41cfc16b98fe6d1955ce46642a5b7a67c11c0f5d",
+    strip_prefix = "rules_proto-6.0.0",
+    urls = [
+        "https://github.com/bazelbuild/rules_proto/archive/refs/tags/6.0.0.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "rules_proto_grpc_protoc",
+    sha256 = "b09f481c000e396655513f4165910be1be822c9533f0a730455822e03504859f",
+    strip_prefix = "bazel-bin/external/rules_proto_grpc_protoc", 
+    urls = [
+        "https://github.com/rules-proto-grpc/rules_proto_grpc/releases/download/v4.2.0/protoc_linux_amd64_v3.20.3.tar.gz",
+    ],
+)
+
+load("@rules_proto//proto:toolchain.bzl", "proto_toolchain")
+
+proto_toolchain(
+    name = "protoc_toolchain",
+    protoc = "@rules_proto_grpc_protoc//:protoc",
+)
